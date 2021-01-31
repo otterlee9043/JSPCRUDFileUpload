@@ -9,7 +9,7 @@ public static Connection getConnection(){
 	Connection con=null;
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
-		con=DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12389420?useSSL=false","sql12389420","VZKtalgVDK");
+		con=DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12389420?useSSL=false&useUnicode=true&characterEncoding=utf8","sql12389420","VZKtalgVDK");
 	}catch(Exception e){System.out.println(e);} 
 	return con;
 }
@@ -32,14 +32,15 @@ public static int update(User u){
 	int status=0;
 	try{
 		Connection con=getConnection();
-		PreparedStatement ps=con.prepareStatement("update book2 set title=?,author=?,comment=?,regdate=?photo=?where id=?");
+		PreparedStatement ps=con.prepareStatement("update book2 set title=?,author=?,comment=?,regdate=?,photo=?where id=?");
 		ps.setString(1,u.getTitle());
-		System.out.println(u.getTitle());
+		
 		ps.setString(2,u.getAuthor());
 		ps.setString(3,u.getComment());
 		ps.setString(4,u.getRegdate());
 		ps.setString(5,u.getPhoto());
-		ps.setInt(5,u.getId());
+		System.out.println(u.getPhoto());
+		ps.setInt(6,u.getId());
 		status=ps.executeUpdate();
 	}catch(Exception e){System.out.println(e);}
 	return status;

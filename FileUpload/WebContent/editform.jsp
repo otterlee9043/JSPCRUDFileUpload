@@ -14,7 +14,7 @@
 		<%
 		UserDao uDao = new UserDao();
 		String id = request.getParameter("id"); 
-		System.out.println(id); 
+		System.out.println("Editform.jsp - id: "+id); 
 		User u = uDao.getRecordById(Integer.parseInt(id));
 		%>
 
@@ -39,7 +39,7 @@
 
 <h1>기록 편집하기</h1>
 
-<form action="edituser.jsp" method="post">
+<form action="edituser.jsp" method="post" enctype="multipart/form-data">
 	<input type="hidden" value="<%=u.getId()%>" name="id"> 
     <div class="form_horizontal">
       <div class="form-group row">
@@ -75,7 +75,7 @@
 		<label class="col-form-label col-sm-2" for="file">Photo</label>
 	    <div class="col-sm-7">
 	    	<input type="file" name="photo"/><br>
-	      <img src="${pageContext.request.contextPath }/upload/<%=u.getPhoto()%>"/><br>
+	      <img width="400px" src="${pageContext.request.contextPath }/upload/<%=u.getPhoto()%>"/><br>
 	    </div>
 	</div>
 	      <div class="form-group row">
